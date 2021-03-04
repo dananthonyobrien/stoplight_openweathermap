@@ -7,14 +7,8 @@ servers:
   - url: 'https://openweathermap.org/api'
     description: ''
 paths:
-  '/users/{userId}':
-    parameters:
-      - schema:
-          type: integer
-        name: userId
-        in: path
-        required: true
-        description: Id of an existing user.
+  /weather:
+    parameters: []
     get:
       summary: Get User Info by User ID
       tags: []
@@ -37,8 +31,8 @@ paths:
                     signUpDate: '2019-08-24'
         '404':
           description: User Not Found
-      operationId: get-users-userId
-      description: Retrieve the information of the user with the matching user ID.
+      operationId: get-weather
+      description: 'Access current weather data for any location on Earth including over 200,000 cities! Current weather is frequently updated based on global models and data from more than 40,000 weather stations.'
     patch:
       summary: Update User Information
       operationId: patch-users-userId
@@ -193,3 +187,19 @@ components:
       key: api_id
       parameter name: appid
       type: query
+  parameters:
+    zip:
+      name: zip
+      description: '**Zip code**. Search by zip code. *Example: 95050,us*. Please note that if the country is not specified, the search uses USA as a default.'
+      in: query
+      required: false
+      schema:
+        type: string
+    units:
+      name: units
+      description: '**Units**. *Example: imperial*. Possible values: `standard`, `metric`, and `imperial`. When you do not use the `units` parameter, the format is `standard` by default.'
+      in: query
+      required: false
+      schema:
+        type: string
+      
